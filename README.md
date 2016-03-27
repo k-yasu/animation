@@ -1,4 +1,4 @@
-# animation
+# animation sample
 
 1.  [マウス（または任意の点）への座標と回転](./examples/sample/01-rotate-to-mouse.html)
     			[![[source]](./examples/include/file_icon.png)](https://github.com/k-yasu/animation/blob/master/examples/sample/01-rotate-to-mouse.html "View source code on GitHub")
