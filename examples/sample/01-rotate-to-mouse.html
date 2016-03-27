@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Rotate to Mouse</title>
+	<link rel="stylesheet" href="../css/bootstrap.css">
+</head>
+<body>
+
+<div id="header">
+	<div class="navbar navbar-default navbar-static-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+		          <span class="navbar-brand">マウス（または任意の点）への座標と回転</span>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<canvas id="canvas" width="400" height="400"></canvas>
+	<div class="commentary">
+		// mouse.x, mouse.yはその方向に向かせる任意の点、xとyに書き換える<br>
+		// arrow.x, arrow.yは向かせたい対象のxとyに書き換える。<br>
+		dx = mouse.x - arrow.x;<br>
+		dy = mouse.y - arrow.y;<br>
+		arrow.rotation = Math.atan2(dy, dx) //radians
+	</div>
+</div>
+<pre>
+    window.onload = function() {
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        var mouse = utils.captureMouse(canvas);
+        var arrow = new Arrow();
+
+        arrow.x = canvas.width / 2;
+        arrow.y = canvas.height / 2;
+        (function drawFrame() {
+            window.requestAnimationFrame(drawFrame);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            var dx = mouse.x - arrow.x;
+            var dy = mouse.y - arrow.y;
+            arrow.rotation = Math.atan2(dy, dx); //radians
+            arrow.draw(context);
+        }());
+    }
+</pre>
+<script src="../include/utils.js"></script>
+<script src="./classes/arrow.js"></script>
+<script>
+	window.onload = function () {
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		var mouse = utils.captureMouse(canvas);
+		var arrow = new Arrow();
+
+		arrow.x = canvas.width / 2;
+		arrow.y = canvas.height / 2;
+		(function drawFrame() {
+			window.requestAnimationFrame(drawFrame);
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			var dx = mouse.x - arrow.x;
+			var dy = mouse.y - arrow.y;
+			arrow.rotation = Math.atan2(dy, dx); //radians
+			arrow.draw(context);
+		}());
+	};
+</script>
+</body>
+</html>

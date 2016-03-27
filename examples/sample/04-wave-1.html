@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Wave 1</title>
+	<link rel="stylesheet" href="../css/bootstrap.css">
+</head>
+<body>
+<div id="header">
+	<div class="navbar navbar-default navbar-static-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<span class="navbar-brand">波の作成</span>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<canvas id="canvas" width="400" height="400"></canvas>
+	<div class="commentary">
+		//valueはスプライトや対象のオブジェクトのxやy、その他のプロパティに割り当て、<br>
+		//描画する座標として使用する。<br>
+		value = center + Math.sin(angle) * range;<br>
+		angle += speed;
+	</div>
+</div>
+<pre>
+	window.onload = function () {
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		var ball = new Ball(10);
+		var angle = 0;
+		var centerY = canvas.height / 2;
+		var range = 50;
+		var xSpeed = 0.5;
+		var ySpeed = 0.05;
+
+		ball.x = 0;
+
+		(function drawFrame() {
+			window.requestAnimationFrame(drawFrame);
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			ball.x += xSpeed;
+			ball.y = centerY + Math.sin(angle) * range;
+			angle += ySpeed;
+			ball.draw(context);
+		}());
+	};
+</pre>
+<script src="../include/utils.js"></script>
+<script src="./classes/ball.js"></script>
+<script>
+	window.onload = function () {
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		var ball = new Ball(10);
+		var angle = 0;
+		var centerY = canvas.height / 2;
+		var range = 50;
+		var xSpeed = 0.5;
+		var ySpeed = 0.05;
+
+		ball.x = 0;
+
+		(function drawFrame() {
+			window.requestAnimationFrame(drawFrame);
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			ball.x += xSpeed;
+			ball.y = centerY + Math.sin(angle) * range;
+			angle += ySpeed;
+			ball.draw(context);
+		}());
+	};
+</script>
+</body>
+</html>
